@@ -7,13 +7,11 @@
  * @returns The value found at keypath, else undefined.
  */
 salt.keypath = function(obj, keypath, create) {
-    var bits = keypath.split(".");
-    for (var i = 0, len = bits.length; i < len; i++) {
-        var last = obj, b = bits[i];
-        obj = obj[b];
-        if (typeof current == null) {
-            if (create) { obj = last[b] = {}; }
-            else { break; }
+    var keys = keypath.split(".");
+    for (var i = 0, key; obj && (key = keys[i]) != null; i++) {
+        var last = obj;
+        if ((obj = obj[key]) === null && create) {
+            obj = last[b] = {};
         }
     }
 
