@@ -11,7 +11,7 @@ salt.clone = function clone(obj) {
             theClone[i] = value instanceof O ? clone(value) : value;
         }
     }
-    else {
+    else if (obj instanceof O) {
         var theClone = {};
         for (var key in obj) {
             if (obj.hasOwnProperty(key)) {
@@ -19,6 +19,9 @@ salt.clone = function clone(obj) {
                 theClone[key] = value instanceof O ? clone(value) : value;
             }
         }
+    }
+    else {
+        theClone = obj;
     }
 
     return theClone;
