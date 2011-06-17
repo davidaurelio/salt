@@ -10,8 +10,8 @@ salt.keypath = function(obj, keypath, create) {
     var keys = keypath.split(".");
     for (var i = 0, key; obj && (key = keys[i]) != null; i++) {
         var last = obj;
-        if ((obj = obj[key]) === null && create) {
-            obj = last[b] = {};
+        if ((obj = last[key]) == null && create) {
+            obj = last[key] = {};
         }
     }
 
